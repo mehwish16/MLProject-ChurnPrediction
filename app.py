@@ -1,3 +1,7 @@
+# to run 
+# python app.py
+
+
 import pandas as pd
 from flask import Flask, request, render_template
 import pickle
@@ -36,11 +40,6 @@ def predict():
     df_2['tenure_group'] = pd.cut(df_2.tenure.astype(int), range(1, 80, 12),
                                   right=False, labels=labels)
     df_2.drop(columns=['tenure'], inplace=True)
-
-    # # Convert numeric columns explicitly
-    # df_2['SeniorCitizen'] = df_2['SeniorCitizen'].astype(int)
-    # df_2['MonthlyCharges'] = df_2['MonthlyCharges'].astype(float)
-    # df_2['TotalCharges'] = df_2['TotalCharges'].astype(float)
 
     # One-hot encode categorical columns
     new_df_dummies = pd.get_dummies(df_2[[
